@@ -1,0 +1,33 @@
+{
+  "name": "nedb-mutli",
+  "author": "Vladimir Angelov",
+  "version": "1.0.0",
+  "description": "A proxy for nedb which allows for multi-process access",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:int",
+    "test:unit": "tape test/unit/**.js",
+    "test:int": "NEDB_MULTI_INTERATIONS=10 NEDB_MULTI_PORT=4141 node test/int/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vangelov/nedb-multi"
+  },
+  "keywords": [ "nedb" ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axon": "^2.0.3",
+    "errio": "^1.2.2",
+    "nedb": "^1.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.5.0",
+    "faucet": "0.0.1",
+    "proxyquire": "^1.7.11",
+    "tape": "^4.6.3"
+  }
+}

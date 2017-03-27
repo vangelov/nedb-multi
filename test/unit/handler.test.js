@@ -70,7 +70,7 @@ test('executing a cursor', (t) => {
 
   const messagesHandler = handler.create(dbsMap);
 
-  messagesHandler('file', 'execCursor', [cursor], () => {
+  messagesHandler('file', '_nedb_multi_execCursor', [cursor], () => {
     t.end();
   });
 });

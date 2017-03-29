@@ -38,19 +38,46 @@ test('calling loadDatabase', (t) => {
 });
 
 test('calling other methods', (t) => {
-  const handler = proxyquire('../../lib/handler', {
-    nedb: class {
+  t.test('when db has been loaded', (st) => {
+    const result = {};
+    const filename = 'file';
+
+    const DataStore = class {
       testMethod(callback) { // eslint-disable-line class-methods-use-this
         process.nextTick(() => callback(null, {}));
       }
-    },
+    };
+
+    const handler = proxyquire('../../lib/handler', {
+      nedb: DataStore,
+    });
+
+    const dbsMap = new Map();
+    dbsMap.set(filename, new DataStore());
+
+    const messagesHandler = handler.create(dbsMap);
+
+    messagesHandler(filename, 'testMethod', [], (err, docs) => {
+      st.notOk(err);
+      st.deepEqual(result, docs);
+      st.end();
+    });
   });
 
-  const dbsMap = new Map();
-  const messagesHandler = handler.create(dbsMap);
+  t.test('when db has not been loaded yet', (st) => {
+    const filename = 'file';
 
-  messagesHandler('file', 'testMethod', [], () => {
-    t.end();
+    const handler = proxyquire('../../lib/handler', {
+      nedb: class {},
+    });
+
+    const dbsMap = new Map();
+    const messagesHandler = handler.create(dbsMap);
+
+    messagesHandler(filename, 'testMethod', [], (err) => {
+      st.ok(err);
+      st.end();
+    });
   });
 });
 

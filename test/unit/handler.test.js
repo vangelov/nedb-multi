@@ -14,7 +14,7 @@ test('calling loadDatabase', (t) => {
     const dbsMap = new Map();
     const messagesHandler = handler.create(dbsMap);
 
-    messagesHandler('file', 'loadDatabase', [], () => {
+    messagesHandler({ filename: 'file' }, 'loadDatabase', [], () => {
       st.ok(dbsMap.get('file'));
       st.end();
     });
@@ -24,11 +24,11 @@ test('calling loadDatabase', (t) => {
     const dbsMap = new Map();
     const messagesHandler = handler.create(dbsMap);
 
-    messagesHandler('file', 'loadDatabase', [], () => {
+    messagesHandler({ filename: 'file' }, 'loadDatabase', [], () => {
       const db1 = dbsMap.get('file');
       st.ok(db1);
 
-      messagesHandler('file', 'loadDatabase', [], () => {
+      messagesHandler({ filename: 'file' }, 'loadDatabase', [], () => {
         const db2 = dbsMap.get('file');
         st.equal(db1, db2);
         st.end();
@@ -57,7 +57,7 @@ test('calling other methods', (t) => {
 
     const messagesHandler = handler.create(dbsMap);
 
-    messagesHandler(filename, 'testMethod', [], (err, docs) => {
+    messagesHandler({ filename }, 'testMethod', [], (err, docs) => {
       st.notOk(err);
       st.deepEqual(result, docs);
       st.end();
@@ -74,7 +74,7 @@ test('calling other methods', (t) => {
     const dbsMap = new Map();
     const messagesHandler = handler.create(dbsMap);
 
-    messagesHandler(filename, 'testMethod', [], (err) => {
+    messagesHandler({ filename }, 'testMethod', [], (err) => {
       st.ok(err);
       st.end();
     });
@@ -97,7 +97,7 @@ test('executing a cursor', (t) => {
 
   const messagesHandler = handler.create(dbsMap);
 
-  messagesHandler('file', '_nedb_multi_execCursor', [cursor], () => {
+  messagesHandler({ filename: 'file' }, '_nedb_multi_execCursor', [cursor], () => {
     t.end();
   });
 });

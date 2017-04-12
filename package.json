@@ -1,7 +1,7 @@
 {
   "name": "nedb-multi",
   "author": "Vladimir Angelov",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A proxy for nedb which allows for multi-process access",
   "scripts": {
     "test": "npm run test:unit && npm run test:int",

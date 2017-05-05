@@ -1,5 +1,5 @@
 const axon = require('axon');
-const proxy = require('./lib/proxy');
+const proxy = require('./lib/dataStoreProxy');
 
 module.exports = (port) => {
   const reqSocket = axon.socket('req');

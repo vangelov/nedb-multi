@@ -1,19 +1,20 @@
 {
   "name": "nedb-multi",
   "author": "Vladimir Angelov",
-  "version": "1.1.2",
+  "version": "1.2.2",
   "description": "A proxy for nedb which allows for multi-process access",
   "scripts": {
-    "test": "npm run test:unit && npm run test:int",
+    "test": "npm run test:unit && npm run test:integration",
     "test:unit": "tape test/unit/**.js",
-    "test:int": "NEDB_MULTI_INTERATIONS=10 NEDB_MULTI_PORT=5151 node test/int/test.js"
+    "test:integration": "NEDB_MULTI_INTERATIONS=10 NEDB_MULTI_PORT=5151 node test/integration/test.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vangelov/nedb-multi"
   },
-  "keywords": [ "nedb" ],
-  "author": "",
+  "keywords": [
+    "nedb"
+  ],
   "license": "MIT",
   "dependencies": {
     "axon": "^2.0.3",
